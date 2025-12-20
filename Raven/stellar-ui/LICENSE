@@ -1,0 +1,11 @@
+
+## 🔗 **URL Alternatives untuk Loading:**
+
+### **1. GitHub Raw URL:**
+```lua
+-- Format dasar
+"https://raw.githubusercontent.com/USERNAME/REPO/BRANCH/FILE.lua"
+
+-- Contoh
+"https://raw.githubusercontent.com/YourName/stellar-ui/main/library.lua"
+"https://raw.githubusercontent.com/YourName/stellar-ui/master/loader.lua"
