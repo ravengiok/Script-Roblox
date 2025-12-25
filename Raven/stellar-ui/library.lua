@@ -5,7 +5,7 @@
     Date: 2024
 ]]
 
-if (game:GetService("CoreGui")):FindFirstChild("Test") and (game:GetService("CoreGui")):FindFirstChild("ScreenGui") then
+if (game:GetService("CoreGui")):FindFirstChild("STELLAR") and (game:GetService("CoreGui")):FindFirstChild("ScreenGui") then
     (game:GetService("CoreGui")).STELLAR:Destroy();
     (game:GetService("CoreGui")).ScreenGui:Destroy();
 end;
@@ -336,7 +336,7 @@ function Update:StartLoad(message)
     message = message or "Loading..."
     
     local Loader = Instance.new("ScreenGui");
-    Loader.Name = "Testing";
+    Loader.Name = "STELLAR";
     Loader.Parent = game.CoreGui;
     Loader.ZIndexBehavior = Enum.ZIndexBehavior.Global;
     Loader.DisplayOrder = 1000;
@@ -365,7 +365,7 @@ function Update:StartLoad(message)
     
     local TitleLoader = Instance.new("TextLabel");
     TitleLoader.Parent = MainLoaderFrame;
-    TitleLoader.Text = "Test";
+    TitleLoader.Text = "Raveeen";
     TitleLoader.Font = Enum.Font.FredokaOne;
     TitleLoader.TextSize = 50;
     TitleLoader.TextColor3 = Color3.fromRGB(255, 255, 255);
@@ -542,7 +542,7 @@ function Update:Window(Config)
     
     -- Create main UI
     local STELLAR = Instance.new("ScreenGui");
-    STELLAR.Name = "Testing";
+    STELLAR.Name = "";
     STELLAR.Parent = game.CoreGui;
     STELLAR.DisplayOrder = 999;
     
@@ -592,7 +592,7 @@ function Update:Window(Config)
     NameHub.AnchorPoint = Vector2.new(0, 0.5);
     NameHub.Size = UDim2.new(0, 1, 0, 25);
     NameHub.Font = Enum.Font.GothamBold;
-    NameHub.Text = "Test";
+    NameHub.Text = "Raveeen";
     NameHub.TextSize = 20;
     NameHub.TextColor3 = _G.Themes[_G.CurrentTheme].Text;
     NameHub.TextXAlignment = Enum.TextXAlignment.Left;
@@ -1181,30 +1181,6 @@ function Update:Window(Config)
         end;
     end);
     
-    -- Resize button functionality
-    local defaultSize = true;
-    ResizeButton.MouseButton1Click:Connect(function()
-        if defaultSize then
-            defaultSize = false;
-            OutlineMain:TweenPosition(UDim2.new(0.5, 0, 0.45, 0), "Out", "Quad", 0.2, true);
-            Main:TweenSize(UDim2.new(1, -20, 1, -20), "Out", "Quad", 0.4, true, function()
-                Page:TweenSize(UDim2.new(0, Main.AbsoluteSize.X - Tab.AbsoluteSize.X - 25, 0, Main.AbsoluteSize.Y - Top.AbsoluteSize.Y - 10), "Out", "Quad", 0.4, true);
-                Tab:TweenSize(UDim2.new(0, WindowConfig.TabWidth, 0, Main.AbsoluteSize.Y - Top.AbsoluteSize.Y - 10), "Out", "Quad", 0.4, true);
-            end);
-            OutlineMain:TweenSize(UDim2.new(1, -10, 1, -10), "Out", "Quad", 0.4, true);
-            ResizeButton.Image = "rbxassetid://10734895698";
-            Update:Notify("Fullscreen mode enabled");
-        else
-            defaultSize = true;
-            Main:TweenSize(UDim2.new(0, originalSize.X.Offset, 0, originalSize.Y.Offset), "Out", "Quad", 0.4, true, function()
-                Page:TweenSize(UDim2.new(0, Main.AbsoluteSize.X - Tab.AbsoluteSize.X - 25, 0, Main.AbsoluteSize.Y - Top.AbsoluteSize.Y - 10), "Out", "Quad", 0.4, true);
-                Tab:TweenSize(UDim2.new(0, WindowConfig.TabWidth, 0, Main.AbsoluteSize.Y - Top.AbsoluteSize.Y - 10), "Out", "Quad", 0.4, true);
-            end);
-            OutlineMain:TweenSize(UDim2.new(0, originalOutlineSize.X.Offset, 0, originalOutlineSize.Y.Offset), "Out", "Quad", 0.4, true);
-            ResizeButton.Image = "rbxassetid://10734886735";
-            Update:Notify("Default size restored");
-        end;
-    end);
     
     -- Keyboard shortcuts
     UserInputService.InputBegan:Connect(function(input)
