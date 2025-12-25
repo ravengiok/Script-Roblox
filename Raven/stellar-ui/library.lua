@@ -5,7 +5,7 @@
     Date: 2024
 ]]
 
-if (game:GetService("CoreGui")):FindFirstChild("STELLAR") and (game:GetService("CoreGui")):FindFirstChild("ScreenGui") then
+if (game:GetService("CoreGui")):FindFirstChild("Test") and (game:GetService("CoreGui")):FindFirstChild("ScreenGui") then
     (game:GetService("CoreGui")).STELLAR:Destroy();
     (game:GetService("CoreGui")).ScreenGui:Destroy();
 end;
@@ -336,7 +336,7 @@ function Update:StartLoad(message)
     message = message or "Loading..."
     
     local Loader = Instance.new("ScreenGui");
-    Loader.Name = "STELLAR_Loader";
+    Loader.Name = "Testing";
     Loader.Parent = game.CoreGui;
     Loader.ZIndexBehavior = Enum.ZIndexBehavior.Global;
     Loader.DisplayOrder = 1000;
@@ -365,7 +365,7 @@ function Update:StartLoad(message)
     
     local TitleLoader = Instance.new("TextLabel");
     TitleLoader.Parent = MainLoaderFrame;
-    TitleLoader.Text = "STELLAR";
+    TitleLoader.Text = "Test";
     TitleLoader.Font = Enum.Font.FredokaOne;
     TitleLoader.TextSize = 50;
     TitleLoader.TextColor3 = Color3.fromRGB(255, 255, 255);
@@ -542,7 +542,7 @@ function Update:Window(Config)
     
     -- Create main UI
     local STELLAR = Instance.new("ScreenGui");
-    STELLAR.Name = "STELLAR";
+    STELLAR.Name = "Testing";
     STELLAR.Parent = game.CoreGui;
     STELLAR.DisplayOrder = 999;
     
@@ -592,7 +592,7 @@ function Update:Window(Config)
     NameHub.AnchorPoint = Vector2.new(0, 0.5);
     NameHub.Size = UDim2.new(0, 1, 0, 25);
     NameHub.Font = Enum.Font.GothamBold;
-    NameHub.Text = "STELLAR";
+    NameHub.Text = "Test";
     NameHub.TextSize = 20;
     NameHub.TextColor3 = _G.Themes[_G.CurrentTheme].Text;
     NameHub.TextXAlignment = Enum.TextXAlignment.Left;
@@ -2058,11 +2058,10 @@ end;
 -- ======================
 -- INITIALIZATION
 -- ======================
-Update:Notify("STELLAR UI Library v5.0 Loaded!");
 Update:Notify("Press Insert to toggle UI | RightShift to minimize");
 
 if SettingsLib.LoadAnimation then
-    local loader = Update:StartLoad("Initializing STELLAR UI...");
+    local loader = Update:StartLoad("Initializing UI...");
     wait(2);
     Update:Loaded();
 end;
