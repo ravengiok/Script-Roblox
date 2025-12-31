@@ -104,34 +104,34 @@ function MakeDraggable(topbarobject, object)
 	end);
 end;
 local ScreenGui = Instance.new("ScreenGui");
-ScreenGui.Name = "STELLAR_Launcher";
-ScreenGui.Parent = game.CoreGui;
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+	ScreenGui.Name = "STELLAR_Launcher";
+	ScreenGui.Parent = game.CoreGui;
+	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
 local OutlineButton = Instance.new("Frame");
-OutlineButton.Name = "OutlineButton";
-OutlineButton.Parent = ScreenGui;
-OutlineButton.ClipsDescendants = true;
-OutlineButton.BackgroundColor3 = _G.Dark;
-OutlineButton.BackgroundTransparency = 0.5;
-OutlineButton.Position = UDim2.new(0, 10, 0, 10);
-OutlineButton.Size = UDim2.new(0, 50, 0, 50);
-CreateRounded(OutlineButton, 12);
-CreateStroke(OutlineButton, _G.Third, 2);
+	OutlineButton.Parent = ScreenGui;
+	OutlineButton.ClipsDescendants = true;
+	OutlineButton.BackgroundColor3 = _G.Dark;
+	OutlineButton.Name = "OutlineButton";
+	OutlineButton.BackgroundTransparency = 0.5;
+	OutlineButton.Position = UDim2.new(0, 10, 0, 10);
+	OutlineButton.Size = UDim2.new(0, 50, 0, 50);
+	CreateRounded(OutlineButton, 12);
+	CreateStroke(OutlineButton, _G.Third, 2);
 local ImageButton = Instance.new("ImageButton");
-ImageButton.Parent = OutlineButton;
-ImageButton.Position = UDim2.new(0.5, 0, 0.5, 0);
-ImageButton.Size = UDim2.new(0, 40, 0, 40);
-ImageButton.AnchorPoint = Vector2.new(0.5, 0.5);
-ImageButton.BackgroundColor3 = _G.Dark;
-ImageButton.ImageColor3 = Color3.fromRGB(250, 250, 250);
-ImageButton.ImageTransparency = 0;
-ImageButton.BackgroundTransparency = 0.3;
-ImageButton.Image = "rbxassetid://105059922903197";
-ImageButton.AutoButtonColor = false;
-MakeDraggable(ImageButton, OutlineButton);
-CreateRounded(ImageButton, 10);
-CreateStroke(ImageButton, _G.Primary, 1);
-ImageButton.MouseButton1Click:connect(function()
+	ImageButton.Parent = OutlineButton;
+	ImageButton.Position = UDim2.new(0.5, 0, 0.5, 0);
+	ImageButton.Size = UDim2.new(0, 40, 0, 40);
+	ImageButton.AnchorPoint = Vector2.new(0.5, 0.5);
+	ImageButton.BackgroundColor3 = _G.Dark;
+	ImageButton.ImageColor3 = Color3.fromRGB(250, 250, 250);
+	ImageButton.ImageTransparency = 0;
+	ImageButton.BackgroundTransparency = 0.3;
+	ImageButton.Image = "rbxassetid://105059922903197";
+	ImageButton.AutoButtonColor = false;
+	MakeDraggable(ImageButton, OutlineButton);
+	CreateRounded(ImageButton, 10);
+	CreateStroke(ImageButton, _G.Primary, 1);
+	ImageButton.MouseButton1Click:connect(function()
 	local stellar = game.CoreGui:FindFirstChild("STELLAR");
 	if stellar then
 		stellar.Enabled = not stellar.Enabled;
@@ -1115,152 +1115,117 @@ function Update:Window(Config)
 			end);
 		end);
 		local main = {};
-		
-		-- FUNGSI DROPDOWN SECTION BARU
 		function main:DropdownSection(title, icon)
-			local sectionAPI = {}
-			local sectionOpen = false
-			
-			-- Buat container untuk section
-			local SectionContainer = Instance.new("Frame")
-			SectionContainer.Name = title .. "_Section"
-			SectionContainer.BackgroundTransparency = 1
-			SectionContainer.Size = UDim2.new(1, -20, 0, 40)
-			SectionContainer.Parent = MainFramePage
-			
-			-- Buat button untuk toggle section
-			local SectionButton = Instance.new("TextButton")
-			SectionButton.Name = title .. "_Button"
-			SectionButton.Text = ""
-			SectionButton.BackgroundColor3 = _G.Primary
-			SectionButton.BackgroundTransparency = 0.8
-			SectionButton.Size = UDim2.new(1, 0, 0, 40)
-			SectionButton.AutoButtonColor = false
-			SectionButton.Parent = SectionContainer
-			
-			CreateRounded(SectionButton, 6)
-			CreateStroke(SectionButton, _G.Third, 1)
-			
-			-- Icon section
-			local SectionIcon = Instance.new("ImageLabel")
-			SectionIcon.Name = "Icon"
-			SectionIcon.Image = icon or "rbxassetid://10734904596"
-			SectionIcon.Size = UDim2.new(0, 20, 0, 20)
-			SectionIcon.Position = UDim2.new(0, 10, 0.5, 0)
-			SectionIcon.AnchorPoint = Vector2.new(0, 0.5)
-			SectionIcon.BackgroundTransparency = 1
-			SectionIcon.ImageColor3 = _G.Themes[_G.CurrentTheme].Text
-			SectionIcon.Parent = SectionButton
-			
-			-- Title section
-			local SectionTitle = Instance.new("TextLabel")
-			SectionTitle.Name = "Title"
-			SectionTitle.Text = title
-			SectionTitle.Font = Enum.Font.GothamBold
-			SectionTitle.TextSize = 14
-			SectionTitle.TextColor3 = _G.Themes[_G.CurrentTheme].Text
-			SectionTitle.BackgroundTransparency = 1
-			SectionTitle.Position = UDim2.new(0, 40, 0.5, 0)
-			SectionTitle.Size = UDim2.new(0.7, 0, 0, 20)
-			SectionTitle.AnchorPoint = Vector2.new(0, 0.5)
-			SectionTitle.TextXAlignment = Enum.TextXAlignment.Left
-			SectionTitle.Parent = SectionButton
-			
-			-- Arrow untuk dropdown
-			local SectionArrow = Instance.new("ImageLabel")
-			SectionArrow.Name = "Arrow"
-			SectionArrow.Image = "rbxassetid://10709790948"
-			SectionArrow.Size = UDim2.new(0, 15, 0, 15)
-			SectionArrow.Position = UDim2.new(1, -15, 0.5, 0)
-			SectionArrow.AnchorPoint = Vector2.new(1, 0.5)
-			SectionArrow.BackgroundTransparency = 1
-			SectionArrow.ImageColor3 = _G.Themes[_G.CurrentTheme].Text
-			SectionArrow.Rotation = 0
-			SectionArrow.Parent = SectionButton
-			
-			-- Container untuk konten dropdown
-			local ContentContainer = Instance.new("Frame")
-			ContentContainer.Name = title .. "_Content"
-			ContentContainer.BackgroundTransparency = 1
-			ContentContainer.Position = UDim2.new(0, 20, 0, 45)
-			ContentContainer.Size = UDim2.new(1, -20, 0, 0)
-			ContentContainer.ClipsDescendants = true
-			ContentContainer.Parent = SectionContainer
-			
-			-- Layout untuk konten
-			local ContentLayout = Instance.new("UIListLayout")
-			ContentLayout.Parent = ContentContainer
-			ContentLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			ContentLayout.Padding = UDim.new(0, 5)
-			
-			-- Fungsi untuk toggle section
+			local sectionAPI = {};
+			local sectionOpen = false;
+			local SectionContainer = Instance.new("Frame");
+			SectionContainer.Name = title .. "_Section";
+			SectionContainer.BackgroundTransparency = 1;
+			SectionContainer.Size = UDim2.new(1, -20, 0, 40);
+			SectionContainer.Parent = MainFramePage;
+			local SectionButton = Instance.new("TextButton");
+			SectionButton.Name = title .. "_Button";
+			SectionButton.Text = "";
+			SectionButton.BackgroundColor3 = _G.Primary;
+			SectionButton.BackgroundTransparency = 0.8;
+			SectionButton.Size = UDim2.new(1, 0, 0, 40);
+			SectionButton.AutoButtonColor = false;
+			SectionButton.Parent = SectionContainer;
+			CreateRounded(SectionButton, 6);
+			CreateStroke(SectionButton, _G.Third, 1);
+			local SectionIcon = Instance.new("ImageLabel");
+			SectionIcon.Name = "Icon";
+			SectionIcon.Image = icon or "rbxassetid://10734904596";
+			SectionIcon.Size = UDim2.new(0, 20, 0, 20);
+			SectionIcon.Position = UDim2.new(0, 10, 0.5, 0);
+			SectionIcon.AnchorPoint = Vector2.new(0, 0.5);
+			SectionIcon.BackgroundTransparency = 1;
+			SectionIcon.ImageColor3 = _G.Themes[_G.CurrentTheme].Text;
+			SectionIcon.Parent = SectionButton;
+			local SectionTitle = Instance.new("TextLabel");
+			SectionTitle.Name = "Title";
+			SectionTitle.Text = title;
+			SectionTitle.Font = Enum.Font.GothamBold;
+			SectionTitle.TextSize = 14;
+			SectionTitle.TextColor3 = _G.Themes[_G.CurrentTheme].Text;
+			SectionTitle.BackgroundTransparency = 1;
+			SectionTitle.Position = UDim2.new(0, 40, 0.5, 0);
+			SectionTitle.Size = UDim2.new(0.7, 0, 0, 20);
+			SectionTitle.AnchorPoint = Vector2.new(0, 0.5);
+			SectionTitle.TextXAlignment = Enum.TextXAlignment.Left;
+			SectionTitle.Parent = SectionButton;
+			local SectionArrow = Instance.new("ImageLabel");
+			SectionArrow.Name = "Arrow";
+			SectionArrow.Image = "rbxassetid://10709790948";
+			SectionArrow.Size = UDim2.new(0, 15, 0, 15);
+			SectionArrow.Position = UDim2.new(1, -15, 0.5, 0);
+			SectionArrow.AnchorPoint = Vector2.new(1, 0.5);
+			SectionArrow.BackgroundTransparency = 1;
+			SectionArrow.ImageColor3 = _G.Themes[_G.CurrentTheme].Text;
+			SectionArrow.Rotation = 0;
+			SectionArrow.Parent = SectionButton;
+			local ContentContainer = Instance.new("Frame");
+			ContentContainer.Name = title .. "_Content";
+			ContentContainer.BackgroundTransparency = 1;
+			ContentContainer.Position = UDim2.new(0, 20, 0, 45);
+			ContentContainer.Size = UDim2.new(1, -20, 0, 0);
+			ContentContainer.ClipsDescendants = true;
+			ContentContainer.Parent = SectionContainer;
+			local ContentLayout = Instance.new("UIListLayout");
+			ContentLayout.Parent = ContentContainer;
+			ContentLayout.SortOrder = Enum.SortOrder.LayoutOrder;
+			ContentLayout.Padding = UDim.new(0, 5);
 			local function toggleSection()
-				sectionOpen = not sectionOpen
-				
+				sectionOpen = not sectionOpen;
 				if sectionOpen then
-					-- Buka section
-					SectionArrow.Rotation = 180
-					local contentHeight = ContentLayout.AbsoluteContentSize.Y
-					SectionContainer.Size = UDim2.new(1, -20, 0, 45 + contentHeight)
-					ContentContainer.Size = UDim2.new(1, -20, 0, contentHeight)
-					SectionButton.BackgroundTransparency = 0.6
+					SectionArrow.Rotation = 180;
+					local contentHeight = ContentLayout.AbsoluteContentSize.Y;
+					SectionContainer.Size = UDim2.new(1, -20, 0, 45 + contentHeight);
+					ContentContainer.Size = UDim2.new(1, -20, 0, contentHeight);
+					SectionButton.BackgroundTransparency = 0.6;
 				else
-					-- Tutup section
-					SectionArrow.Rotation = 0
-					SectionContainer.Size = UDim2.new(1, -20, 0, 40)
-					ContentContainer.Size = UDim2.new(1, -20, 0, 0)
-					SectionButton.BackgroundTransparency = 0.8
-				end
-			end
-			
-			SectionButton.MouseButton1Click:Connect(toggleSection)
-			
-			-- API untuk section
+					SectionArrow.Rotation = 0;
+					SectionContainer.Size = UDim2.new(1, -20, 0, 40);
+					ContentContainer.Size = UDim2.new(1, -20, 0, 0);
+					SectionButton.BackgroundTransparency = 0.8;
+				end;
+			end;
+			SectionButton.MouseButton1Click:Connect(toggleSection);
 			function sectionAPI:Toggle()
-				toggleSection()
-			end
-			
+				toggleSection();
+			end;
 			function sectionAPI:IsOpen()
-				return sectionOpen
-			end
-			
-			-- Fungsi untuk menambah toggle ke dalam section
+				return sectionOpen;
+			end;
 			function sectionAPI:AddToggle(text, default, callback)
-				local toggle = main:Toggle(text, default, "", callback)
-				local toggleFrame = toggle:GetParent()
+				local toggle = main:Toggle(text, default, "", callback);
+				local toggleFrame = toggle:GetParent();
 				if toggleFrame then
-					toggleFrame.Parent = ContentContainer
-					toggleFrame.Size = UDim2.new(1, 0, 0, 30)
-					toggleFrame.BackgroundTransparency = 0.7
-				end
-				return toggle
-			end
-			
-			-- Fungsi untuk menambah button ke dalam section
+					toggleFrame.Parent = ContentContainer;
+					toggleFrame.Size = UDim2.new(1, 0, 0, 30);
+					toggleFrame.BackgroundTransparency = 0.7;
+				end;
+				return toggle;
+			end;
 			function sectionAPI:AddButton(text, callback)
-				local button = main:Button(text, callback)
-				local buttonFrame = button:GetParent()
+				local button = main:Button(text, callback);
+				local buttonFrame = button:GetParent();
 				if buttonFrame then
-					buttonFrame.Parent = ContentContainer
-					buttonFrame.Size = UDim2.new(1, 0, 0, 30)
-					buttonFrame.BackgroundTransparency = 0.7
-				end
-				return button
-			end
-			
-			-- Update ukuran secara real-time
+					buttonFrame.Parent = ContentContainer;
+					buttonFrame.Size = UDim2.new(1, 0, 0, 30);
+					buttonFrame.BackgroundTransparency = 0.7;
+				end;
+				return button;
+			end;
 			RunService.Stepped:Connect(function()
 				if sectionOpen then
-					local contentHeight = ContentLayout.AbsoluteContentSize.Y
-					SectionContainer.Size = UDim2.new(1, -20, 0, 45 + contentHeight)
-					ContentContainer.Size = UDim2.new(1, -20, 0, contentHeight)
-				end
-			end)
-			
-			return sectionAPI
-		end
-		
-		-- FUNGSI UTAMA YANG SUDAH ADA
+					local contentHeight = ContentLayout.AbsoluteContentSize.Y;
+					SectionContainer.Size = UDim2.new(1, -20, 0, 45 + contentHeight);
+					ContentContainer.Size = UDim2.new(1, -20, 0, contentHeight);
+				end;
+			end);
+			return sectionAPI;
+		end;
 		function main:Button(text, callback)
 			local ButtonFrame = Instance.new("Frame");
 			ButtonFrame.Name = "Button";
@@ -1320,7 +1285,9 @@ function Update:Window(Config)
 				end;
 			end);
 			return {
-				GetParent = function() return ButtonFrame end,
+				GetParent = function()
+					return ButtonFrame;
+				end,
 				SetText = function(newText)
 					TextLabel.Text = newText;
 				end,
@@ -1329,7 +1296,6 @@ function Update:Window(Config)
 				end
 			};
 		end;
-		
 		function main:Toggle(text, config, desc, callback)
 			config = config or false;
 			local toggled = config;
@@ -1414,7 +1380,9 @@ function Update:Window(Config)
 			end);
 			updateToggle();
 			return {
-				GetParent = function() return ToggleFrame end,
+				GetParent = function()
+					return ToggleFrame;
+				end,
 				Set = function(state)
 					toggled = state;
 					updateToggle();
@@ -1424,7 +1392,6 @@ function Update:Window(Config)
 				end
 			};
 		end;
-		
 		function main:Slider(text, min, max, set, callback)
 			local SliderFrame = Instance.new("Frame");
 			SliderFrame.Name = "Slider";
@@ -1520,7 +1487,6 @@ function Update:Window(Config)
 				end
 			};
 		end;
-		
 		function main:Dropdown(text, options, default, callback)
 			local DropdownFrame = Instance.new("Frame");
 			DropdownFrame.Name = "Dropdown";
@@ -1680,7 +1646,6 @@ function Update:Window(Config)
 			end;
 			return dropdownAPI;
 		end;
-		
 		function main:Textbox(text, placeholder, callback)
 			local TextboxFrame = Instance.new("Frame");
 			TextboxFrame.Name = "Textbox";
@@ -1732,7 +1697,6 @@ function Update:Window(Config)
 				end
 			};
 		end;
-		
 		function main:Label(text)
 			local LabelFrame = Instance.new("Frame");
 			LabelFrame.Name = "Label";
@@ -1772,7 +1736,6 @@ function Update:Window(Config)
 			end;
 			return labelAPI;
 		end;
-		
 		function main:Seperator(text)
 			local SeperatorFrame = Instance.new("Frame");
 			SeperatorFrame.Name = "Seperator";
@@ -1825,7 +1788,6 @@ function Update:Window(Config)
 			}));
 			Gradient2.Rotation = 90;
 		end;
-		
 		function main:Line()
 			local LineFrame = Instance.new("Frame");
 			LineFrame.Name = "Line";
@@ -1847,17 +1809,14 @@ function Update:Window(Config)
 				ColorSequenceKeypoint.new(1, _G.Dark)
 			}));
 		end;
-		
 		return main;
 	end;
 	return uitab;
 end;
-
 Update:Notify("Press Insert to toggle UI | RightShift to minimize");
 if SettingsLib.LoadAnimation then
 	local loader = Update:StartLoad("Initializing UI...");
 	wait(2);
 	Update:Loaded();
 end;
-
 return Update;
